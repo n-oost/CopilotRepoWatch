@@ -1,0 +1,4 @@
+<!-- Simple solid color background for preview, replace with a PNG if desired -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/background"/>
+</shape>
