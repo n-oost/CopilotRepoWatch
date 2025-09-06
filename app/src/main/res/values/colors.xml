@@ -1,0 +1,5 @@
+<resources>
+    <color name="background">#202020</color>
+    <color name="hand">#FFFFFF</color>
+    <color name="second_hand">#FF0000</color>
+</resources>
