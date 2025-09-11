@@ -36,12 +36,13 @@ class WatchFaceService : WatchFaceService() {
     override fun createComplicationSlotsManager(
         currentUserStyleRepository: CurrentUserStyleRepository
     ): ComplicationSlotsManager {
-        // Example: bottom complication slot for calendar
-        val calendarSlot = ComplicationSlot.createRoundRect(
+        
+        // Top complication - Date/Calendar
+        val topSlot = ComplicationSlot.createRoundRect(
             id = 0,
-            bounds = RectF(0.35f, 0.80f, 0.65f, 0.95f), // bottom center
+            bounds = RectF(0.35f, 0.05f, 0.65f, 0.20f), // top center
             boundsType = ComplicationSlotBoundsType.FRACTION,
-            supportedTypes = listOf(ComplicationType.SHORT_TEXT, ComplicationType.RANGED_VALUE),
+            supportedTypes = listOf(ComplicationType.SHORT_TEXT, ComplicationType.LONG_TEXT),
             defaultDataSourcePolicy = DefaultComplicationDataSourcePolicy(
                 ComponentName(
                     "com.google.android.calendar",
@@ -53,10 +54,59 @@ class WatchFaceService : WatchFaceService() {
             isInitiallyEnabled = true
         )
 
-        // Add more slots as needed, e.g. left/right for steps/battery/weather
+        // Left complication - Steps/Fitness
+        val leftSlot = ComplicationSlot.createRoundRect(
+            id = 1,
+            bounds = RectF(0.05f, 0.35f, 0.25f, 0.65f), // left center
+            boundsType = ComplicationSlotBoundsType.FRACTION,
+            supportedTypes = listOf(ComplicationType.RANGED_VALUE, ComplicationType.SHORT_TEXT),
+            defaultDataSourcePolicy = DefaultComplicationDataSourcePolicy(
+                ComponentName(
+                    "com.google.android.gms",
+                    "com.google.android.gms.fitness.complications.StepsComplicationProviderService"
+                )
+            ),
+            configExtras = null,
+            isEnabled = true,
+            isInitiallyEnabled = true
+        )
+
+        // Right complication - Battery
+        val rightSlot = ComplicationSlot.createRoundRect(
+            id = 2,
+            bounds = RectF(0.75f, 0.35f, 0.95f, 0.65f), // right center
+            boundsType = ComplicationSlotBoundsType.FRACTION,
+            supportedTypes = listOf(ComplicationType.RANGED_VALUE, ComplicationType.SHORT_TEXT),
+            defaultDataSourcePolicy = DefaultComplicationDataSourcePolicy(
+                ComponentName(
+                    "com.google.android.wearable.app",
+                    "com.google.android.clockwork.complications.BatteryComplicationProviderService"
+                )
+            ),
+            configExtras = null,
+            isEnabled = true,
+            isInitiallyEnabled = true
+        )
+
+        // Bottom complication - Weather
+        val bottomSlot = ComplicationSlot.createRoundRect(
+            id = 3,
+            bounds = RectF(0.35f, 0.80f, 0.65f, 0.95f), // bottom center
+            boundsType = ComplicationSlotBoundsType.FRACTION,
+            supportedTypes = listOf(ComplicationType.SHORT_TEXT, ComplicationType.LONG_TEXT),
+            defaultDataSourcePolicy = DefaultComplicationDataSourcePolicy(
+                ComponentName(
+                    "com.google.android.apps.weather",
+                    "com.google.android.apps.weather.complications.WeatherComplicationProviderService"
+                )
+            ),
+            configExtras = null,
+            isEnabled = true,
+            isInitiallyEnabled = true
+        )
 
         return ComplicationSlotsManager(
-            listOf(calendarSlot),
+            listOf(topSlot, leftSlot, rightSlot, bottomSlot),
             currentUserStyleRepository
         )
     }

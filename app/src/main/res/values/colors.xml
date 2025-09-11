@@ -1,5 +1,9 @@
 <resources>
-    <color name="background">#202020</color>
-    <color name="hand">#FFFFFF</color>
-    <color name="second_hand">#FF0000</color>
+    <color name="background">#F5EBD7</color>
+    <color name="hand">#654321</color>
+    <color name="second_hand">#8B4513</color>
+    <color name="zen_sand_light">#F5EBD7</color>
+    <color name="zen_sand_medium">#DEB887</color>
+    <color name="zen_sand_dark">#D2B48C</color>
+    <color name="zen_brown">#8B4513</color>
 </resources>
