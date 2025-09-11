@@ -1,4 +1,11 @@
-<!-- Simple solid color background for preview, replace with a PNG if desired -->
+<!-- Zen Garden sand background for preview -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-    <solid android:color="@color/background"/>
+    <gradient 
+        android:startColor="@color/zen_sand_light"
+        android:centerColor="@color/zen_sand_medium"
+        android:endColor="@color/zen_sand_dark"
+        android:type="radial"
+        android:centerX="0.5"
+        android:centerY="0.5"
+        android:gradientRadius="0.8" />
 </shape>
