@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WatchFace width="400" height="400">
+    <!-- Background configuration for Zen Garden -->
+    <Scene backgroundColor="#F5F5DC">
+        <!-- Zen Garden Background -->
+        <PartDraw x="0" y="0" width="400" height="400">
+            <RenderConfiguration>
+                <BitmapConfiguration 
+                    resource="zen_garden_bg"
+                    tint="#8B7355" />
+            </RenderConfiguration>
+        </PartDraw>
+        
+        <!-- Watch hands -->
+        <Group name="WatchHands">
+            <!-- Hour hand -->
+            <PartDraw 
+                x="200" 
+                y="200" 
+                width="4" 
+                height="120"
+                pivotX="2" 
+                pivotY="100"
+                rotation="[HOUR_0_11] * 30 + [MINUTE_Z] * 0.5">
+                <RenderConfiguration>
+                    <ShapeConfiguration>
+                        <Rectangle width="4" height="120" color="#654321" />
+                    </ShapeConfiguration>
+                </RenderConfiguration>
+            </PartDraw>
+            
+            <!-- Minute hand -->
+            <PartDraw 
+                x="200" 
+                y="200" 
+                width="3" 
+                height="150"
+                pivotX="1.5" 
+                pivotY="130"
+                rotation="[MINUTE_Z] * 6">
+                <RenderConfiguration>
+                    <ShapeConfiguration>
+                        <Rectangle width="3" height="150" color="#654321" />
+                    </ShapeConfiguration>
+                </RenderConfiguration>
+            </PartDraw>
+            
+            <!-- Second hand -->
+            <PartDraw 
+                x="200" 
+                y="200" 
+                width="1" 
+                height="160"
+                pivotX="0.5" 
+                pivotY="140"
+                rotation="[SECOND_Z] * 6">
+                <RenderConfiguration>
+                    <ShapeConfiguration>
+                        <Rectangle width="1" height="160" color="#8B4513" />
+                    </ShapeConfiguration>
+                </RenderConfiguration>
+            </PartDraw>
+            
+            <!-- Center dot -->
+            <PartDraw x="195" y="195" width="10" height="10">
+                <RenderConfiguration>
+                    <ShapeConfiguration>
+                        <Ellipse width="10" height="10" color="#654321" />
+                    </ShapeConfiguration>
+                </RenderConfiguration>
+            </PartDraw>
+        </Group>
+        
+        <!-- Complications -->
+        <Group name="Complications">
+            <!-- Top complication - Date -->
+            <PartDraw x="140" y="20" width="120" height="60">
+                <RenderConfiguration>
+                    <ComplicationConfiguration 
+                        slotId="0"
+                        supportedTypes="SHORT_TEXT,LONG_TEXT" />
+                </RenderConfiguration>
+            </PartDraw>
+            
+            <!-- Left complication - Steps -->
+            <PartDraw x="20" y="140" width="80" height="120">
+                <RenderConfiguration>
+                    <ComplicationConfiguration 
+                        slotId="1"
+                        supportedTypes="RANGED_VALUE,SHORT_TEXT" />
+                </RenderConfiguration>
+            </PartDraw>
+            
+            <!-- Right complication - Battery -->
+            <PartDraw x="300" y="140" width="80" height="120">
+                <RenderConfiguration>
+                    <ComplicationConfiguration 
+                        slotId="2"
+                        supportedTypes="RANGED_VALUE,SHORT_TEXT" />
+                </RenderConfiguration>
+            </PartDraw>
+            
+            <!-- Bottom complication - Weather -->
+            <PartDraw x="140" y="320" width="120" height="60">
+                <RenderConfiguration>
+                    <ComplicationConfiguration 
+                        slotId="3"
+                        supportedTypes="SHORT_TEXT,LONG_TEXT" />
+                </RenderConfiguration>
+            </PartDraw>
+        </Group>
+        
+        <!-- Physics ball placeholder (will be rendered by custom code) -->
+        <Group name="PhysicsBall">
+            <PartDraw x="180" y="180" width="40" height="40">
+                <RenderConfiguration>
+                    <ShapeConfiguration>
+                        <Ellipse width="40" height="40" color="#C0C0C0" />
+                    </ShapeConfiguration>
+                </RenderConfiguration>
+            </PartDraw>
+        </Group>
+    </Scene>
+</WatchFace>

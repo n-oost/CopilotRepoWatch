@@ -14,18 +14,18 @@ import kotlin.math.*
 class PhysicsBall(
     private val bounds: android.graphics.Rect
 ) {
-    // Ball properties
+    // Ball properties (optimized for Pixel 1)
     var x: Float = bounds.exactCenterX()
     var y: Float = bounds.exactCenterY()
     private var velocityX: Float = 0f
     private var velocityY: Float = 0f
-    private val radius: Float = 15f
+    val radius: Float = 20f // Slightly larger for easier touch on small screen
     private val mass: Float = 1f
     
-    // Physics constants
-    private val friction: Float = 0.98f
-    private val bounceRestitution: Float = 0.7f
-    private val gravityScale: Float = 200f
+    // Physics constants (optimized for Pixel 1 performance)
+    private val friction: Float = 0.95f // Increased friction for stability
+    private val bounceRestitution: Float = 0.6f // Reduced bounce for smoother feel
+    private val gravityScale: Float = 150f // Reduced for less aggressive movement
     
     // Touch interaction
     private var isBeingTouched: Boolean = false
@@ -40,9 +40,9 @@ class PhysicsBall(
         isAntiAlias = true
     }
     
-    // Trail effect for visual appeal
+    // Trail effect for visual appeal (reduced for Pixel 1 performance)
     private val trailPoints = mutableListOf<TrailPoint>()
-    private val maxTrailPoints = 20
+    private val maxTrailPoints = 10 // Reduced from 20 for better performance
     
     private data class TrailPoint(val x: Float, val y: Float, val timestamp: Long)
     
@@ -208,7 +208,28 @@ class PhysicsBall(
         }
     }
     
-    // Get ball position for sand interaction
-    fun getPosition(): Pair<Float, Float> = Pair(x, y)
-    fun getRadius(): Float = radius
+    fun applyForce(forceX: Float, forceY: Float) {
+        velocityX += forceX
+        velocityY += forceY
+    }
+    
+    fun drawSimplified(canvas: Canvas) {
+        // Simplified drawing for Pixel 1 performance
+        val simplePaint = Paint().apply {
+            isAntiAlias = true
+            color = 0xFFC0C0C0.toInt() // Simple silver color
+            style = Paint.Style.FILL
+        }
+        
+        // Draw simple circle without gradient for better performance
+        canvas.drawCircle(x, y, radius, simplePaint)
+        
+        // Simple highlight
+        val highlightPaint = Paint().apply {
+            isAntiAlias = true
+            color = 0x80FFFFFF.toInt()
+            style = Paint.Style.FILL
+        }
+        canvas.drawCircle(x - radius * 0.3f, y - radius * 0.3f, radius * 0.2f, highlightPaint)
+    }
 }
