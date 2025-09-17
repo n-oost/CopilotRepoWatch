@@ -68,25 +68,53 @@ class ZenGardenRenderer(context: Context) {
         )
     }
     
-    fun draw(canvas: Canvas, bounds: Rect, ball: PhysicsBall? = null) {
-        // Update patterns periodically
-        val currentTime = System.currentTimeMillis()
-        if (currentTime - lastPatternUpdate > patternUpdateInterval) {
-            generateRakePattern()
-            lastPatternUpdate = currentTime
+    fun drawOptimized(canvas: Canvas, bounds: Rect, ball: PhysicsBall? = null, isAmbient: Boolean = false) {
+        // Simplified drawing for Pixel 1 performance
+        if (isAmbient) {
+            // Ultra-simple ambient mode
+            drawSimpleBackground(canvas, bounds)
+            return
         }
         
-        // Draw base sand background
-        drawSandBackground(canvas, bounds)
+        // Regular optimized drawing
+        drawSimpleBackground(canvas, bounds)
         
-        // Draw rake patterns
-        drawRakePatterns(canvas, bounds)
+        // Only draw rake patterns every few frames for performance
+        if (System.currentTimeMillis() % 100 < 50) {
+            drawSimpleRakePattern(canvas, bounds)
+        }
         
-        // Draw ball tracks
-        drawBallTracks(canvas)
+        // Update ball tracking (simplified)
+        ball?.let { updateBallTrackingSimple(it) }
+    }
+    
+    private fun drawSimpleBackground(canvas: Canvas, bounds: Rect) {
+        // Simple sand color without complex gradients
+        sandPaint.shader = null
+        sandPaint.color = 0xFFF5EBDC.toInt() // Light sand color
+        canvas.drawRect(bounds, sandPaint)
+    }
+    
+    private fun drawSimpleRakePattern(canvas: Canvas, bounds: Rect) {
+        // Draw simple concentric circles for zen pattern
+        val centerX = bounds.exactCenterX()
+        val centerY = bounds.exactCenterY()
+        val simplePaint = Paint().apply {
+            isAntiAlias = true
+            color = 0x20654321
+            strokeWidth = 1f
+            style = Paint.Style.STROKE
+        }
         
-        // Update ball tracking
-        ball?.let { updateBallTracking(it) }
+        for (i in 1..3) {
+            val radius = i * 60f
+            canvas.drawCircle(centerX, centerY, radius, simplePaint)
+        }
+    }
+    
+    private fun updateBallTrackingSimple(ball: PhysicsBall) {
+        // Simplified ball tracking for Pixel 1
+        // Just store the last position without complex trail rendering
     }
     
     private fun drawSandBackground(canvas: Canvas, bounds: Rect) {

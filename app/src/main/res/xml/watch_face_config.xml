@@ -1,3 +1,68 @@
 <watch-face-configuration>
-    <!-- Add user style configuration options here if desired -->
+    <!-- User style configuration for WFF customization -->
+    <UserStyleSchema>
+        <!-- Ball physics intensity setting -->
+        <UserStyleSetting id="physics_intensity">
+            <ListUserStyleSetting>
+                <DisplayName>Physics Intensity</DisplayName>
+                <Description>Control the responsiveness of the physics ball</Description>
+                <Options>
+                    <ListOption id="gentle">
+                        <DisplayName>Gentle</DisplayName>
+                    </ListOption>
+                    <ListOption id="normal">
+                        <DisplayName>Normal</DisplayName>
+                    </ListOption>
+                    <ListOption id="active">
+                        <DisplayName>Active</DisplayName>
+                    </ListOption>
+                </Options>
+                <DefaultOption>
+                    <DefaultOptionIndex>1</DefaultOptionIndex>
+                </DefaultOption>
+            </ListUserStyleSetting>
+        </UserStyleSetting>
+        
+        <!-- Zen garden pattern style -->
+        <UserStyleSetting id="garden_pattern">
+            <ListUserStyleSetting>
+                <DisplayName>Garden Pattern</DisplayName>
+                <Description>Choose the zen garden rake pattern style</Description>
+                <Options>
+                    <ListOption id="circles">
+                        <DisplayName>Circles</DisplayName>
+                    </ListOption>
+                    <ListOption id="lines">
+                        <DisplayName>Lines</DisplayName>
+                    </ListOption>
+                    <ListOption id="spiral">
+                        <DisplayName>Spiral</DisplayName>
+                    </ListOption>
+                    <ListOption id="minimal">
+                        <DisplayName>Minimal (Pixel 1)</DisplayName>
+                    </ListOption>
+                </Options>
+                <DefaultOption>
+                    <DefaultOptionIndex>3</DefaultOptionIndex>
+                </DefaultOption>
+            </ListUserStyleSetting>
+        </UserStyleSetting>
+        
+        <!-- Performance mode for Pixel 1 -->
+        <UserStyleSetting id="performance_mode">
+            <BooleanUserStyleSetting>
+                <DisplayName>Pixel 1 Mode</DisplayName>
+                <Description>Enable optimizations for Pixel 1 watch</Description>
+                <TrueOption>
+                    <DisplayName>Enabled</DisplayName>
+                </TrueOption>
+                <FalseOption>
+                    <DisplayName>Standard</DisplayName>
+                </FalseOption>
+                <DefaultOption>
+                    <DefaultValue>true</DefaultValue>
+                </DefaultOption>
+            </BooleanUserStyleSetting>
+        </UserStyleSetting>
+    </UserStyleSchema>
 </watch-face-configuration>

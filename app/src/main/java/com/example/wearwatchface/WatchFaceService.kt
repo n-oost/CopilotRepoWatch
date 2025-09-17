@@ -20,7 +20,7 @@ class WatchFaceService : WatchFaceService() {
         complicationSlotsManager: ComplicationSlotsManager,
         currentUserStyleRepository: CurrentUserStyleRepository
     ): WatchFace {
-        val renderer = WatchFaceRenderer(
+        val renderer = WatchFaceRendererOptimized(
             surfaceHolder,
             this,
             watchState,
